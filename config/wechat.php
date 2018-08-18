@@ -26,7 +26,7 @@ return [
     'log' => [
         'level'      => 'debug',
         'permission' => 0777,
-        'file'       =>  __DIR__.'/wechat.log',
+        'file'       =>  storage_path('/wechat.log'),
     ],
 
     /**
