@@ -13,10 +13,11 @@ class ServerController extends Controller
      * @author luwei
      * @date ${YEAR}-${MONTH}-${DAY} ${TIME}
      */
-    public function messsageHandle()
+    public function messageHandle()
     {
         $app = $this->getApp();
         $app->server->push(function ($message) {
+            \Log::info($message['MsgType']);
             switch ($message['MsgType']) {
                 case 'event':
                     return '收到事件消息';

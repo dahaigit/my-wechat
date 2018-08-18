@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::any('server/handle/message', 'ServerController@handleMessage');
+Route::any('server/handle/message', 'ServerController@messageHandle');
