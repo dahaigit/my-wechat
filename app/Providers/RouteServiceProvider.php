@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         //
+        $this->mapWechatRoutes();
     }
 
     /**
@@ -69,5 +70,18 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace . '\\API')
              ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * 微信路由
+     * @author luwei
+     * @date ${YEAR}-${MONTH}-${DAY} ${TIME}
+     */
+    protected function mapWechatRoutes()
+    {
+        Route::prefix('wechat')
+//            ->middleware('api')
+            ->namespace($this->namespace . '\\Wechat')
+            ->group(base_path('routes/wechat.php'));
     }
 }
