@@ -18,7 +18,7 @@ class CreateUserWechatsTable extends Migration
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id')->comment('用户id id@users');
-            $table->string('open_id')->unique()->comment('用户open_id');
+            $table->string('open_id')->comment('用户open_id');
             $table->string('nickname')->nullable()->comment('用户昵称');
             $table->tinyInteger('sex')->default(0)->comment('性别：1男，2女，0未知');
             $table->string('province')->nullable()->comment('省份');
