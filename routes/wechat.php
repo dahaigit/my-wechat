@@ -14,3 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::any('server/handle/message', 'ServerController@messageHandle');
+
+Route::get('test', function () {
+    dd(32323);
+});
