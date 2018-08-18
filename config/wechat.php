@@ -52,6 +52,6 @@ return [
      */
     'oauth' => [
         'scopes'   => ['snsapi_userinfo'],
-        'callback' => 'http://mall.dev.2jia1baby.com',
+        'callback' => env('APP_CLIENT_URL'),
     ],
 ];
