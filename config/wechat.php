@@ -52,6 +52,6 @@ return [
      */
     'oauth' => [
         'scopes'   => ['snsapi_userinfo'],
-        'callback' => '/examples/oauth_callback.php',
+        'callback' => 'http://mall.dev.2jia1baby.com',
     ],
 ];

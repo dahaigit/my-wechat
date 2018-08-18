@@ -18,7 +18,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $this->app = $this->getApp();
-        dd($this->app->oauth());
+        $response = $this->app->oauth->scopes(['snsapi_userinfo'])
+            ->redirect();
+        return $response;
+//        dd($response);
     }
 
     /**
@@ -26,7 +29,7 @@ class AuthController extends Controller
      * @author luwei
      * @date ${YEAR}-${MONTH}-${DAY} ${TIME}
      */
-    public function auth()
+    public function oAuth()
     {
 
     }
