@@ -29,7 +29,7 @@ class CreateUserWechatsTable extends Migration
             $table->string('unique_id')->nullable()->comment('用户唯一ID');
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE `'. self::TABLE .'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
+        DB::statement('ALTER TABLE `'. self::TABLE .'` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;');
         DB::statement('ALTER TABLE `' . self::TABLE . '` COMMENT="用户微信表"');
     }
 
