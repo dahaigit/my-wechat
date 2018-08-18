@@ -13,7 +13,7 @@ class ServerController extends Controller
      * @author luwei
      * @date ${YEAR}-${MONTH}-${DAY} ${TIME}
      */
-    public function messageHandle()
+    public function message()
     {
         $app = $this->getApp();
         $app->server->push(function ($message) {
