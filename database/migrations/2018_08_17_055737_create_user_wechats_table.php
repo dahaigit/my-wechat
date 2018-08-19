@@ -27,6 +27,7 @@ class CreateUserWechatsTable extends Migration
             $table->string('headimgurl')->nullable()->comment('头像');
             $table->string('privilege')->nullable()->comment('用户特权');
             $table->string('unique_id')->nullable()->comment('用户唯一ID');
+            $table->tinyInteger('is_subscribe')->default(0)->comment('是否关注1关注0未关注，默认0');
             $table->timestamps();
         });
         DB::statement('ALTER TABLE `'. self::TABLE .'` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;');

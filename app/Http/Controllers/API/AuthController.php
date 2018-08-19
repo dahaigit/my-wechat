@@ -32,10 +32,12 @@ class AuthController extends Controller
         $oauthUser = $app->oauth->user($accessToken);
 
         // 4、存储已授权的用户
+        $openId = $oauthUser->id;
+        $getUser = $app->user->get($openId);
         $user = User::create();
-        UserWechat::created([
+        UserWechat::create([
             'user_id' => $user->id,
-            'open_id' => $oauthUser->open_id,
+            'open_id' => $openId,
             'nickname' => $oauthUser->open_id,
             'sex' => $oauthUser->sex,
             'province' => $oauthUser->province,
@@ -44,6 +46,7 @@ class AuthController extends Controller
             'headimgurl' => $oauthUser->headimgurl,
             'privilege' => $oauthUser->privilege,
             'unique_id' => $oauthUser->unique_id,
+            'is_subscribe' => $getUser->is_subscribe ? 1 : 0,
         ]);
     }
 
