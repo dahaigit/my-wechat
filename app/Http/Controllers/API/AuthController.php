@@ -38,7 +38,7 @@ class AuthController extends Controller
         UserWechat::create([
             'user_id' => $user->id,
             'open_id' => $openId,
-            'nickname' => $getUser->open_id,
+            'nickname' => $getUser->nickname,
             'sex' => $getUser->sex,
             'province' => $getUser->province,
             'city' => $getUser->city,
