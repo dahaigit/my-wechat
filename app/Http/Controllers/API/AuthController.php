@@ -59,9 +59,9 @@ class AuthController extends Controller
                     'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
                 ]);
             }
-            DB::commit();
+            \DB::commit();
         } catch (\Exception $exception) {
-            DB::rollBack();
+            \DB::rollBack();
         }
 
     }
