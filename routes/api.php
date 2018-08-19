@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('login', 'AuthController@login');
+Route::get('client/start/oauth', 'AuthController@clientStartOauth');

@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class AuthController extends Controller
 {
     use Wechat;
-    public $app;
+
     /**
      * 用户登陆
      * @author luwei
@@ -17,20 +17,30 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $this->app = $this->getApp();
-        $response = $this->app->oauth->scopes(['snsapi_userinfo'])
-            ->redirect();
-        return $response;
-//        dd($response);
+        $code = $request->code;
+        if (!$code)
+        {
+            dd('没有code');
+        }
+        $app = $this->getApp();
+        // 2、通过code获取token
+        $accessToken = $app->oauth->getAccessToken($code);
+        dd($accessToken);
+
+        // 3、获取用户信息
+
     }
 
     /**
-     * 授权方法
+     * 1、客户端发起授权
      * @author luwei
      * @date ${YEAR}-${MONTH}-${DAY} ${TIME}
      */
-    public function oAuth()
+    public function clientStartOAuth(Request $request)
     {
-
+        $app = $this->getApp();
+        $response = $app->oauth->scopes(['snsapi_userinfo'])->stateless()
+            ->redirect();
+        return $response;
     }
 }
