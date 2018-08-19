@@ -20,10 +20,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $code = $request->code;
-        if (!$code)
-        {
-            dd('没有code');
-        }
         $app = $this->getApp();
         // 2、通过code获取token
         $accessToken = $app->oauth->getAccessToken($code);
