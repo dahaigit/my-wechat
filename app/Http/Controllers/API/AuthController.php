@@ -32,29 +32,36 @@ class AuthController extends Controller
         $getUser = $app->user->get($openId);
         // 查询用户是否存在，不存在添加，存在就更新
         $userWechat = UserWechat::where('open_id', $openId)->first();
-        if ($userWechat) {
-            $userWechat->update([
-                'nickname' => $getUser['nickname'],
-                'sex' => $getUser['sex'],
-                'province' => $getUser['province'],
-                'city' => $getUser['city'],
-                'country' => $getUser['country'],
-                'headimgurl' => $getUser['headimgurl'],
-                'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
-            ]);
-        } else {
-            $user = User::create();
-            UserWechat::create([
-                'user_id' => $user->id,
-                'open_id' => $openId,
-                'nickname' => $getUser['nickname'],
-                'sex' => $getUser['sex'],
-                'province' => $getUser['province'],
-                'city' => $getUser['city'],
-                'country' => $getUser['country'],
-                'headimgurl' => $getUser['headimgurl'],
-                'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
-            ]);
+
+        try {
+            \DB::beginTransaction();
+            if ($userWechat) {
+                $userWechat->update([
+                    'nickname' => $getUser['nickname'],
+                    'sex' => $getUser['sex'],
+                    'province' => $getUser['province'],
+                    'city' => $getUser['city'],
+                    'country' => $getUser['country'],
+                    'headimgurl' => $getUser['headimgurl'],
+                    'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
+                ]);
+            } else {
+                $user = User::create();
+                UserWechat::create([
+                    'user_id' => $user->id,
+                    'open_id' => $openId,
+                    'nickname' => $getUser['nickname'],
+                    'sex' => $getUser['sex'],
+                    'province' => $getUser['province'],
+                    'city' => $getUser['city'],
+                    'country' => $getUser['country'],
+                    'headimgurl' => $getUser['headimgurl'],
+                    'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
+                ]);
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
         }
 
     }
