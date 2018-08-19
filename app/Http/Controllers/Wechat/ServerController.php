@@ -17,7 +17,6 @@ class ServerController extends Controller
     {
         $app = $this->getApp();
         $app->server->push(function ($message) {
-            \Log::info($message['MsgType']);
             switch ($message['MsgType']) {
                 case 'event':
                     return '收到事件消息';
