@@ -34,20 +34,33 @@ class AuthController extends Controller
         // 4、存储已授权的用户
         $openId = $oauthUser->id;
         $getUser = $app->user->get($openId);
-        $user = User::create();
-        UserWechat::create([
-            'user_id' => $user->id,
-            'open_id' => $openId,
-            'nickname' => $getUser['nickname'],
-            'sex' => $getUser['sex'],
-            'province' => $getUser['province'],
-            'city' => $getUser['city'],
-            'country' => $getUser['country'],
-            'headimgurl' => $getUser['headimgurl'],
-//            'privilege' => $oauthUser->privilege,
-//            'unique_id' => $oauthUser->unique_id,
-            'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
-        ]);
+        // 查询用户是否存在，不存在添加，存在就更新
+        $userWechat = UserWechat::where('open_id', $openId)->first();
+        if ($userWechat) {
+            $userWechat->update([
+                'nickname' => $getUser['nickname'],
+                'sex' => $getUser['sex'],
+                'province' => $getUser['province'],
+                'city' => $getUser['city'],
+                'country' => $getUser['country'],
+                'headimgurl' => $getUser['headimgurl'],
+                'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
+            ]);
+        } else {
+            $user = User::create();
+            UserWechat::create([
+                'user_id' => $user->id,
+                'open_id' => $openId,
+                'nickname' => $getUser['nickname'],
+                'sex' => $getUser['sex'],
+                'province' => $getUser['province'],
+                'city' => $getUser['city'],
+                'country' => $getUser['country'],
+                'headimgurl' => $getUser['headimgurl'],
+                'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
+            ]);
+        }
+
     }
 
     /**
