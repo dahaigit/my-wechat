@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Wechat\Wechat;
+use App\Models\User;
 use App\Models\UserWechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
