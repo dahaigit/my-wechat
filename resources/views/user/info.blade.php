@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect">授权</a>
+
 </body>
 </html>

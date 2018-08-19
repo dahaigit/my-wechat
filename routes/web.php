@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('user/info', function () {
+    $request = request();
+    dd($request->user());
+    return view('user/info');
+});

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserWechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -63,7 +64,10 @@ class AuthController extends Controller
         } catch (\Exception $exception) {
             \DB::rollBack();
         }
-
+        // 登陆
+        Auth::login($user);
+        // 跳转到网站首页
+        return redirect('user/info');
     }
 
     /**
