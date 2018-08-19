@@ -67,7 +67,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4aebe20c12f506a3&redirect_uri=http%3A%2F
-%2Fwechat.subprice.cn&response_type=code&scope=snsapi_login&state=123#wechat_redirect">授权</a>
+%2Fwechat.subprice.cn&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect">授权</a>
         </div>
     </body>
 </html>
