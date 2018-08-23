@@ -15,3 +15,13 @@ use Illuminate\Http\Request;
 
 Route::get('login', 'AuthController@login');
 Route::get('client/start/oauth', 'AuthController@clientStartOauth');
+
+// 需要授权才能访问的接口
+Route::group(['middleware' => 'auth:api'], function () {
+    // 获取用户信息
+    Route::get('user/info', 'UserController@info');
+
+    // 获取任务
+    Route::resource('tasks', 'TaskController');
+
+});

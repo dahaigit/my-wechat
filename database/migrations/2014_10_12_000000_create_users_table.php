@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('mobile')->nullable();
             $table->string('password')->nullable();
-            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         DB::statement('ALTER TABLE `'. self::TABLE .'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');

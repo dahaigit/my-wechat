@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use EcareYu\Services\HandleService as Handle;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->is('api/*') || $request->is('baby/*')) {
+            return Handle::exception($exception);
+        }
+
         return parent::render($request, $exception);
     }
 }
