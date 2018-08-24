@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     use Wechat;
 
@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        if ($request->code) {
+        if ($request->code && $request->code != 1) {
             $code = $request->code;
             $app = $this->getApp();
             // 2、通过code获取token
@@ -69,10 +69,9 @@ class AuthController extends Controller
             // 模拟登录
             $user = User::find(1);
         }
-
         // 5、使用passport登录
         $token =  $this->passportLogin($user);
-        return $token;
+        return $this->response('登陆成功', $token);
     }
 
     /**

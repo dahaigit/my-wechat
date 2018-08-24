@@ -52,6 +52,6 @@ return [
      */
     'oauth' => [
         'scopes'   => ['snsapi_userinfo'],
-        'callback' => env('APP_CLIENT_URL') . '/api/login',
+        'callback' => env('APP_CLIENT_URL') . '/#/auth',
     ],
 ];
