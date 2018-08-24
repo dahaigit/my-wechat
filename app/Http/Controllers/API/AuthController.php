@@ -46,6 +46,7 @@ class AuthController extends ApiController
                         'headimgurl' => $getUser['headimgurl'],
                         'is_subscribe' => $getUser['subscribe'] ? 1 : 0,
                     ]);
+                    $user = $userWechat;
                 } else {
                     $user = User::create();
                     UserWechat::create([
