@@ -9,7 +9,12 @@ class UserController extends ApiController
 {
     public function info(Request $request)
     {
-        dd($request->user());
-        return view('info');
+        $user = $request->user();
+        $data = [
+            'user_id' => $user->id,
+            'nickname' => $user->wechat->nickname,
+            'headimgurl' => $user->wechat->headimgurl,
+        ];
+        return $this->response('请求成功', $data);
     }
 }

@@ -26,7 +26,7 @@ class User extends Auththenticatable
      */
     public function wechat()
     {
-        return $this->hasOne(UserWechat::class, 'id', 'user_id');
+        return $this->hasOne(UserWechat::class, 'user_id', 'id');
     }
 
     /**
